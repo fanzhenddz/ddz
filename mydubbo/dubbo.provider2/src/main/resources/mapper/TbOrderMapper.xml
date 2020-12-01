@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddz.mapper.TbOrderMapper">
+
+    <select id="getTbOrderById" resultType="com.ddz.entity.TbOrder">
+        select
+                id as id,
+                total_num as totalNum,
+                total_money as totalMoney,
+                pre_money as preMoney,
+                post_fee as postFee,
+                pay_money as payMoney,
+                pay_type as payType,
+                create_time as createTime,
+                update_time as updateTime,
+                pay_time as payTime,
+                consign_time as consignTime,
+                end_time as endTime,
+                close_time as closeTime,
+                shipping_name as shippingName,
+                shipping_code as shippingCode,
+                username as username,
+                buyer_message as buyerMessage,
+                buyer_rate as buyerRate,
+                receiver_contact as receiverContact,
+                receiver_mobile as receiverMobile,
+                receiver_address as receiverAddress,
+                source_type as sourceType,
+                transaction_id as transactionId,
+                order_status as orderStatus,
+                pay_status as payStatus,
+                consign_status as consignStatus,
+                is_delete as isDelete
+        from tb_order
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTbOrderListByMap" resultType="com.ddz.entity.TbOrder" parameterType="java.util.Map">
+        select
+                id as id,
+                total_num as totalNum,
+                total_money as totalMoney,
+                pre_money as preMoney,
+                post_fee as postFee,
+                pay_money as payMoney,
+                pay_type as payType,
+                create_time as createTime,
+                update_time as updateTime,
+                pay_time as payTime,
+                consign_time as consignTime,
+                end_time as endTime,
+                close_time as closeTime,
+                shipping_name as shippingName,
+                shipping_code as shippingCode,
+                username as username,
+                buyer_message as buyerMessage,
+                buyer_rate as buyerRate,
+                receiver_contact as receiverContact,
+                receiver_mobile as receiverMobile,
+                receiver_address as receiverAddress,
+                source_type as sourceType,
+                transaction_id as transactionId,
+                order_status as orderStatus,
+                pay_status as payStatus,
+                consign_status as consignStatus,
+                is_delete as isDelete
+        from tb_order
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="totalNum != null and totalNum!=''">
+                    and total_num=#{totalNum}
+                </if>
+                <if test="totalMoney != null and totalMoney!=''">
+                    and total_money=#{totalMoney}
+                </if>
+                <if test="preMoney != null and preMoney!=''">
+                    and pre_money=#{preMoney}
+                </if>
+                <if test="postFee != null and postFee!=''">
+                    and post_fee=#{postFee}
+                </if>
+                <if test="payMoney != null and payMoney!=''">
+                    and pay_money=#{payMoney}
+                </if>
+                <if test="payType != null and payType!=''">
+                    and pay_type=#{payType}
+                </if>
+                <if test="createTime != null and createTime!=''">
+                    and create_time=#{createTime}
+                </if>
+                <if test="updateTime != null and updateTime!=''">
+                    and update_time=#{updateTime}
+                </if>
+                <if test="payTime != null and payTime!=''">
+                    and pay_time=#{payTime}
+                </if>
+                <if test="consignTime != null and consignTime!=''">
+                    and consign_time=#{consignTime}
+                </if>
+                <if test="endTime != null and endTime!=''">
+                    and end_time=#{endTime}
+                </if>
+                <if test="closeTime != null and closeTime!=''">
+                    and close_time=#{closeTime}
+                </if>
+                <if test="shippingName != null and shippingName!=''">
+                    and shipping_name=#{shippingName}
+                </if>
+                <if test="shippingCode != null and shippingCode!=''">
+                    and shipping_code=#{shippingCode}
+                </if>
+                <if test="username != null and username!=''">
+                    and username=#{username}
+                </if>
+                <if test="buyerMessage != null and buyerMessage!=''">
+                    and buyer_message=#{buyerMessage}
+                </if>
+                <if test="buyerRate != null and buyerRate!=''">
+                    and buyer_rate=#{buyerRate}
+                </if>
+                <if test="receiverContact != null and receiverContact!=''">
+                    and receiver_contact=#{receiverContact}
+                </if>
+                <if test="receiverMobile != null and receiverMobile!=''">
+                    and receiver_mobile=#{receiverMobile}
+                </if>
+                <if test="receiverAddress != null and receiverAddress!=''">
+                    and receiver_address=#{receiverAddress}
+                </if>
+                <if test="sourceType != null and sourceType!=''">
+                    and source_type=#{sourceType}
+                </if>
+                <if test="transactionId != null and transactionId!=''">
+                    and transaction_id=#{transactionId}
+                </if>
+                <if test="orderStatus != null and orderStatus!=''">
+                    and order_status=#{orderStatus}
+                </if>
+                <if test="payStatus != null and payStatus!=''">
+                    and pay_status=#{payStatus}
+                </if>
+                <if test="consignStatus != null and consignStatus!=''">
+                    and consign_status=#{consignStatus}
+                </if>
+                <if test="isDelete != null and isDelete!=''">
+                    and is_delete=#{isDelete}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTbOrderCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from tb_order
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="totalNum != null and totalNum!=''">
+                    and total_num=#{totalNum}
+                </if>
+                <if test="totalMoney != null and totalMoney!=''">
+                    and total_money=#{totalMoney}
+                </if>
+                <if test="preMoney != null and preMoney!=''">
+                    and pre_money=#{preMoney}
+                </if>
+                <if test="postFee != null and postFee!=''">
+                    and post_fee=#{postFee}
+                </if>
+                <if test="payMoney != null and payMoney!=''">
+                    and pay_money=#{payMoney}
+                </if>
+                <if test="payType != null and payType!=''">
+                    and pay_type=#{payType}
+                </if>
+                <if test="createTime != null and createTime!=''">
+                    and create_time=#{createTime}
+                </if>
+                <if test="updateTime != null and updateTime!=''">
+                    and update_time=#{updateTime}
+                </if>
+                <if test="payTime != null and payTime!=''">
+                    and pay_time=#{payTime}
+                </if>
+                <if test="consignTime != null and consignTime!=''">
+                    and consign_time=#{consignTime}
+                </if>
+                <if test="endTime != null and endTime!=''">
+                    and end_time=#{endTime}
+                </if>
+                <if test="closeTime != null and closeTime!=''">
+                    and close_time=#{closeTime}
+                </if>
+                <if test="shippingName != null and shippingName!=''">
+                    and shipping_name=#{shippingName}
+                </if>
+                <if test="shippingCode != null and shippingCode!=''">
+                    and shipping_code=#{shippingCode}
+                </if>
+                <if test="username != null and username!=''">
+                    and username=#{username}
+                </if>
+                <if test="buyerMessage != null and buyerMessage!=''">
+                    and buyer_message=#{buyerMessage}
+                </if>
+                <if test="buyerRate != null and buyerRate!=''">
+                    and buyer_rate=#{buyerRate}
+                </if>
+                <if test="receiverContact != null and receiverContact!=''">
+                    and receiver_contact=#{receiverContact}
+                </if>
+                <if test="receiverMobile != null and receiverMobile!=''">
+                    and receiver_mobile=#{receiverMobile}
+                </if>
+                <if test="receiverAddress != null and receiverAddress!=''">
+                    and receiver_address=#{receiverAddress}
+                </if>
+                <if test="sourceType != null and sourceType!=''">
+                    and source_type=#{sourceType}
+                </if>
+                <if test="transactionId != null and transactionId!=''">
+                    and transaction_id=#{transactionId}
+                </if>
+                <if test="orderStatus != null and orderStatus!=''">
+                    and order_status=#{orderStatus}
+                </if>
+                <if test="payStatus != null and payStatus!=''">
+                    and pay_status=#{payStatus}
+                </if>
+                <if test="consignStatus != null and consignStatus!=''">
+                    and consign_status=#{consignStatus}
+                </if>
+                <if test="isDelete != null and isDelete!=''">
+                    and is_delete=#{isDelete}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTbOrder" parameterType="com.ddz.entity.TbOrder">
+        insert into tb_order(
+                        id,
+                        total_num,
+                        total_money,
+                        pre_money,
+                        post_fee,
+                        pay_money,
+                        pay_type,
+                        create_time,
+                        update_time,
+                        pay_time,
+                        consign_time,
+                        end_time,
+                        close_time,
+                        shipping_name,
+                        shipping_code,
+                        username,
+                        buyer_message,
+                        buyer_rate,
+                        receiver_contact,
+                        receiver_mobile,
+                        receiver_address,
+                        source_type,
+                        transaction_id,
+                        order_status,
+                        pay_status,
+                        consign_status,
+                        is_delete)
+        values(
+                    #{id},
+                     #{totalNum},
+                     #{totalMoney},
+                     #{preMoney},
+                     #{postFee},
+                     #{payMoney},
+                     #{payType},
+                     #{createTime},
+                     #{updateTime},
+                     #{payTime},
+                     #{consignTime},
+                     #{endTime},
+                     #{closeTime},
+                     #{shippingName},
+                     #{shippingCode},
+                     #{username},
+                     #{buyerMessage},
+                     #{buyerRate},
+                     #{receiverContact},
+                     #{receiverMobile},
+                     #{receiverAddress},
+                     #{sourceType},
+                     #{transactionId},
+                     #{orderStatus},
+                     #{payStatus},
+                     #{consignStatus},
+                    #{isDelete})
+    </insert>
+
+    <update id="updateTbOrder" parameterType="com.ddz.entity.TbOrder">
+        update tb_order
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="totalNum != null and totalNum!=''">
+                            total_num=#{totalNum},
+                        </if>
+                        <if test="totalMoney != null and totalMoney!=''">
+                            total_money=#{totalMoney},
+                        </if>
+                        <if test="preMoney != null and preMoney!=''">
+                            pre_money=#{preMoney},
+                        </if>
+                        <if test="postFee != null and postFee!=''">
+                            post_fee=#{postFee},
+                        </if>
+                        <if test="payMoney != null and payMoney!=''">
+                            pay_money=#{payMoney},
+                        </if>
+                        <if test="payType != null and payType!=''">
+                            pay_type=#{payType},
+                        </if>
+                        <if test="createTime != null and createTime!=''">
+                            create_time=#{createTime},
+                        </if>
+                        <if test="updateTime != null and updateTime!=''">
+                            update_time=#{updateTime},
+                        </if>
+                        <if test="payTime != null and payTime!=''">
+                            pay_time=#{payTime},
+                        </if>
+                        <if test="consignTime != null and consignTime!=''">
+                            consign_time=#{consignTime},
+                        </if>
+                        <if test="endTime != null and endTime!=''">
+                            end_time=#{endTime},
+                        </if>
+                        <if test="closeTime != null and closeTime!=''">
+                            close_time=#{closeTime},
+                        </if>
+                        <if test="shippingName != null and shippingName!=''">
+                            shipping_name=#{shippingName},
+                        </if>
+                        <if test="shippingCode != null and shippingCode!=''">
+                            shipping_code=#{shippingCode},
+                        </if>
+                        <if test="username != null and username!=''">
+                            username=#{username},
+                        </if>
+                        <if test="buyerMessage != null and buyerMessage!=''">
+                            buyer_message=#{buyerMessage},
+                        </if>
+                        <if test="buyerRate != null and buyerRate!=''">
+                            buyer_rate=#{buyerRate},
+                        </if>
+                        <if test="receiverContact != null and receiverContact!=''">
+                            receiver_contact=#{receiverContact},
+                        </if>
+                        <if test="receiverMobile != null and receiverMobile!=''">
+                            receiver_mobile=#{receiverMobile},
+                        </if>
+                        <if test="receiverAddress != null and receiverAddress!=''">
+                            receiver_address=#{receiverAddress},
+                        </if>
+                        <if test="sourceType != null and sourceType!=''">
+                            source_type=#{sourceType},
+                        </if>
+                        <if test="transactionId != null and transactionId!=''">
+                            transaction_id=#{transactionId},
+                        </if>
+                        <if test="orderStatus != null and orderStatus!=''">
+                            order_status=#{orderStatus},
+                        </if>
+                        <if test="payStatus != null and payStatus!=''">
+                            pay_status=#{payStatus},
+                        </if>
+                        <if test="consignStatus != null and consignStatus!=''">
+                            consign_status=#{consignStatus},
+                        </if>
+                        <if test="isDelete != null and isDelete!=''">
+                            is_delete=#{isDelete}
+                        </if>
+        </trim>
+    </update>
+</mapper>
